@@ -3,6 +3,7 @@ from pprint import pprint
 from src.classes import Category, Product
 from src.utils import load_data
 
+
 def main():
     data = load_data()
     categories = []
@@ -20,11 +21,11 @@ def main():
             product = Product(element['name'], element['description'], element['price'], element['quantity'])
             result.append(f'{product.get_title()}\n'
                           f'{product.get_description()}\n'
-                          f'{product.get_price()}\n'
+                          f'{product.get_price}\n'
                           f'{product.get_quantity_in_stock()}\n\n'
                           )
     pprint(categories)
 
+
 if __name__ == '__main__':
     main()
-
