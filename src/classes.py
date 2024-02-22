@@ -32,7 +32,7 @@ class Category:
         return list_product
 
     def add_products(self, value):
-        self.__products.append(f"{value.name}, {value.description}, {value.price}, {value.quantity}")
+        self.__products.append(value)
 
 
 
@@ -49,6 +49,7 @@ class Product:
         self.__price = price
         self.quantity_in_stock = quantity_in_stock
 
+
     def get_title(self):
         return self.name
 
@@ -56,14 +57,14 @@ class Product:
         return self.description
 
     @property
-    def get_price(self):
+    def price(self):
         return self.__price
 
     def get_quantity_in_stock(self):
         return self.quantity_in_stock
 
-    @get_price.setter
-    def get_price(self, value):
+    @price.setter
+    def price(self, value):
         if value <= 0:
             print("Цена введена не корректно")
         elif value < self.__price:
@@ -73,17 +74,14 @@ class Product:
                     self.__price = value
                     break
                 elif answer == "n":
-                    self.__price = self.__price
                     break
         else:
             self.__price = value
 
     @classmethod
     def create_product(cls, new_product):
-        name, description, price, quantity = \
-            (
-                new_product['name'], new_product['description'], new_product['price'], new_product['quantity']
-            )
+
+        new_product['name'], new_product['description'], new_product['price'], new_product['quantity']
 
         return cls(**new_product)
 
