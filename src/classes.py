@@ -14,6 +14,12 @@ class Category:
         Category.total_numbers_of_category += 1
         Category.unique_products += 1
 
+    def __len__(self):
+        total = 0
+        for products in self.__products:
+            total += products.quantity
+        return total
+
     def get_name(self):
         return self.title
 
@@ -28,13 +34,10 @@ class Category:
         list_product = []
         for products in self.__products:
             list_product.append(f"{products.name}, {products.price} руб. Остаток: {products.quantity} шт.\n")
-
         return list_product
 
     def add_products(self, value):
         self.__products.append(value)
-
-
 
 
 class Product:
@@ -48,6 +51,12 @@ class Product:
         self.description = description
         self.__price = price
         self.quantity_in_stock = quantity_in_stock
+
+    def __str__(self):
+        return f"{self.name}, {self.price} руб. Остаток: {self.quantity_in_stock} шт."
+
+    def __add__(self, other):
+        return self.price * self.quantity_in_stock + other.price * other.quantity_in_stock
 
 
     def get_title(self):
@@ -80,8 +89,4 @@ class Product:
 
     @classmethod
     def create_product(cls, new_product):
-
-        new_product['name'], new_product['description'], new_product['price'], new_product['quantity']
-
         return cls(**new_product)
-

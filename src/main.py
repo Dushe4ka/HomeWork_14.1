@@ -21,7 +21,7 @@ def main():
             product = Product(element['name'], element['description'], element['price'], element['quantity'])
             result.append(f'{product.get_title()}\n'
                           f'{product.get_description()}\n'
-                          f'{product.get_price}\n'
+                          f'{product.price}\n'
                           f'{product.get_quantity_in_stock()}\n\n'
                           )
     pprint(categories)
