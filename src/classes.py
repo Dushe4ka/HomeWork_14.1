@@ -14,11 +14,11 @@ class Category:
         Category.total_numbers_of_category += 1
         Category.unique_products += 1
 
+    def __str__(self):
+        return f'{self.title}, количество продуктов: {Category.__len__(self)} шт.'
+
     def __len__(self):
-        total = 0
-        for products in self.__products:
-            total += products.quantity
-        return total
+        return len(self.__products)
 
     def get_name(self):
         return self.title

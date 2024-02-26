@@ -34,12 +34,20 @@ def test_get_description(class_category):
     assert class_category.get_description() == ('Смартфоны, как средство не только коммуникации, но и получение '
                                                 'дополнительных функций для удобства жизни')
 
+def test_category_len(class_category):
+    assert class_category.__len__() == 1
+
+def test_category_str(class_category):
+    assert class_category.__str__() == 'Смартфоны, количество продуктов: 1 шт.'
 
 def test_product_init(class_product):
     assert class_product.name == 'Samsung Galaxy C23 Ultra'
     assert class_product.description == '256GB, Серый цвет, 200MP камера'
     assert class_product.price == 180000.0
     assert class_product.quantity_in_stock == 5
+
+def test_product_str(class_product):
+    assert class_product.__str__() == 'Samsung Galaxy C23 Ultra, 180000.0 руб. Остаток: 5 шт.'
 
 
 def test_get_title(class_product):
@@ -56,3 +64,7 @@ def test_get_price(class_product):
 
 def test_get_quantity_in_stock(class_product):
     assert class_product.get_quantity_in_stock() == 5
+
+def test_add(class_product):
+    other = Product('name', 'desc', 50000, 2)
+    assert class_product + other == 1000000
