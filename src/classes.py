@@ -56,7 +56,7 @@ class Product:
         return f"{self.name}, {self.price} руб. Остаток: {self.quantity_in_stock} шт."
 
     def __add__(self, other):
-        return self.price * self.quantity_in_stock + other.price * other.quantity_in_stock
+            return self.price * self.quantity_in_stock + other.price * other.quantity_in_stock
 
 
     def get_title(self):
