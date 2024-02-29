@@ -2,7 +2,7 @@ from src.classes import Product
 
 
 class Smartphone(Product):
-    performance: str
+    performance: float
     model: str
     memory: str
     color: str

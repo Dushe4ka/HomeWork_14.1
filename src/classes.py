@@ -37,7 +37,11 @@ class Category:
         return list_product
 
     def add_products(self, value):
-        self.__products.append(value)
+        """Проверка что класс объекта является дочерним класса Product или базовым классом Product"""
+        if not isinstance(value, Product):
+            raise TypeError("Добавлять можно только объекты Product или его наследников")
+        else:
+            self.__products.append(value)
 
 
 class Product:
@@ -56,7 +60,10 @@ class Product:
         return f"{self.name}, {self.price} руб. Остаток: {self.quantity_in_stock} шт."
 
     def __add__(self, other):
+        if isinstance(other, type(self)):
             return self.price * self.quantity_in_stock + other.price * other.quantity_in_stock
+        else:
+            raise TypeError
 
 
     def get_title(self):
