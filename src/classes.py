@@ -1,3 +1,5 @@
+from abstract_class import Abstract
+
 class Category:
     title: str
     description: str
@@ -44,7 +46,7 @@ class Category:
             self.__products.append(value)
 
 
-class Product:
+class Product(Abstract):
     title: str
     description: str
     price: float
