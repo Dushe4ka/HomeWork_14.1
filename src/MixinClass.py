@@ -1,7 +1,11 @@
 class MixinLog:
 
-    def __init__(self):
-        pass
+    def __init__(self, *args, **kwargs):
+        """
+        Функция печатает информацию для разработчика
+        какой объект был создан и с какими свойствами
+        """
+        print(repr(self))
 
-    def order_log(self):
-        print(f"Объект {self.title} создан, {self.description}, {self.price}, {self.quantity_in_stock}")
+    def __repr__(self):
+        return f"{self.__class__.__name__}({self.__dict__.items})"

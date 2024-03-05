@@ -1,4 +1,5 @@
 from abstract_class import Abstract
+from MixinClass import MixinLog
 
 class Category:
     title: str
@@ -46,7 +47,7 @@ class Category:
             self.__products.append(value)
 
 
-class Product(Abstract):
+class Product(Abstract, MixinLog):
     title: str
     description: str
     price: float
@@ -57,6 +58,7 @@ class Product(Abstract):
         self.description = description
         self.__price = price
         self.quantity_in_stock = quantity_in_stock
+        super().__init__()
 
     def __str__(self):
         return f"{self.name}, {self.price} руб. Остаток: {self.quantity_in_stock} шт."
