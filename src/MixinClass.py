@@ -8,4 +8,7 @@ class MixinLog:
         print(repr(self))
 
     def __repr__(self):
-        return f"{self.__class__.__name__}({self.__dict__.items})"
+        object_attributes = ''
+        for key, value in self.__dict__.items():
+            object_attributes += f"{key}: {value}, "
+        return f"создан объект со свойствами {object_attributes}"
