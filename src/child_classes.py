@@ -1,8 +1,7 @@
 from src.classes import Product
-from abstract_class import Abstract
 
 
-class Smartphone(Product, Abstract):
+class Smartphone(Product):
     performance: float
     model: str
     memory: str
@@ -16,7 +15,7 @@ class Smartphone(Product, Abstract):
         super().__init__(name, description, price, quantity_in_stock)
 
 
-class Lawn_Grass(Product, Abstract):
+class Lawn_Grass(Product):
     country: str
     period: str
     color: str

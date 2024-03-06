@@ -17,3 +17,7 @@ class Abstract(ABC):
     @abstractmethod
     def get_quantity_in_stock(self):
         pass
+
+    @abstractmethod
+    def create_product(cls, new_product):
+        pass
