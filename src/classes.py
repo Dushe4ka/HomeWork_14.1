@@ -1,6 +1,7 @@
 from abstract_class import Abstract
 from MixinClass import MixinLog
 
+
 class Category:
     title: str
     description: str
@@ -69,7 +70,6 @@ class Product(Abstract, MixinLog):
         else:
             raise TypeError
 
-
     def get_title(self):
         return self.name
 
@@ -100,4 +100,15 @@ class Product(Abstract, MixinLog):
 
     @classmethod
     def create_product(cls, new_product):
-        return cls(**new_product)
+        if new_product['quantity'] >= 1:
+            return cls(**new_product)
+        else:
+            raise ValueError
+
+    def average_price(self):
+        try:
+            av_price = self.price / self.quantity_in_stock
+        except ZeroDivisionError:
+            print('В категории нет товаров')
+        else:
+            print("av_price")
