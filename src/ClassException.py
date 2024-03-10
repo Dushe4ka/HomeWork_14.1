@@ -2,9 +2,10 @@ from classes import Category
 from Order import Order
 
 
-class ExceptionClass:
-    def __init__(self, *args, **kwargs):
-        pass
+class ZeroQuantityException(Exception):
+    def __init__(self, message="Quantity should be greater than zero"):
+        self.message = message
+        super().__init__(self.message)
 
-    def check_quantity(self):
-        pass
+    def __str__(self):
+        return self.message

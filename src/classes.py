@@ -2,6 +2,15 @@ from abstract_class import Abstract
 from MixinClass import MixinLog
 
 
+class MyValueError(Exception):
+    def __init__(self, message="Tовар с нулевым количеством не может быть добавлен"):
+        self.message = message
+        super().__init__(self.message)
+
+    def __str__(self):
+        return self.message
+
+
 class Category:
     title: str
     description: str
@@ -44,8 +53,35 @@ class Category:
         """Проверка что класс объекта является дочерним класса Product или базовым классом Product"""
         if not isinstance(value, Product):
             raise TypeError("Добавлять можно только объекты Product или его наследников")
+        # Обрабатываем ситуацию с нулевым количеством товара
+        try:
+            if value.quantity_in_stock == 0:
+                raise MyValueError
+        except MyValueError as e:
+            print(e.message)
         else:
             self.__products.append(value)
+            Category.unique_products += 1
+            print(f'Товар "{value.title}" добавлен в категорию "{self.title}"')
+        finally:
+            print("Обработка добавления товара завершена")
+
+    def avg_price(self):
+        """
+            Метод подсчитывает средний ценник всех товаров.
+            С помощью исключений обработать случай, когда в категории нет товаров
+            и сумма всех товаров будет делиться на ноль.
+            В случае, если такое происходит, возвращать ноль.
+        """
+        total_sum = 0
+        total_quant = 0
+        try:
+            for product in self.__products:
+                total_sum += product.price * product.quantity
+                total_quant += product.quantity
+            return total_sum / total_quant
+        except ZeroDivisionError:
+            return 0
 
 
 class Product(Abstract, MixinLog):
@@ -111,4 +147,4 @@ class Product(Abstract, MixinLog):
         except ZeroDivisionError:
             print('В категории нет товаров')
         else:
-            print("av_price")
+            print(av_price)
